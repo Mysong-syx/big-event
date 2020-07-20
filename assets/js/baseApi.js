@@ -15,7 +15,7 @@ $.ajaxPrefilter(function (options) {
     options.complete = function (res) {
         console.log(res);
         // 在 complete 回调函数中，可以使用 res.responseJSON 拿到服务器响应回来的数据
-        if(!responseJSON) {
+        if (!res.responseJSON) {
             console.log('此时出现没有responseJSON 我们做一个错误判断');
             let jsondata = JSON.parse(res.responseText);
             if (jsondata.message === '身份认证失败！' && jsondata.status === 1) {
@@ -25,11 +25,11 @@ $.ajaxPrefilter(function (options) {
                 location.href = 'login.html';
             }
         }
-        if (res.responseJSON.message === '身份认证失败！' && res.responseJSON.status === 1) {
-             // 1.强制清空token
-            localStorage.removeItem('token');
-            // 2.强制跳转到登录页面
-            location.href = 'login.html';
-        }
+        // if (res.responseJSON.message === '身份认证失败！' && res.responseJSON.status === 1) {
+        //     // 1.强制清空token
+        //     localStorage.removeItem('token');
+        //     // 2.强制跳转到登录页面
+        //     location.href = 'login.html';
+        // }
     }
 })
