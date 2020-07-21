@@ -24,7 +24,7 @@ function getUserInfo() {
         //     Authorization: localStorage.getItem('token') || '',
         // },
         success: function (res) {
-            console.log(res);
+            // console.log(res);
             if (res.status !== 0) {
                 return layui.layer.msg('获取信息失败!')
             }
@@ -72,4 +72,9 @@ function renderAvatar(user) {
         var first = name[0].toUpperCase();
         $('.text-avatar').html(first).show();
     }
+}
+
+// 定义切换dd类名的函数
+function artListActive() {
+    $('.art_list').addClass('layui-this').siblings().removeClass('layui-this')
 }
